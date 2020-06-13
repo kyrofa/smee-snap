@@ -1,0 +1,23 @@
+name: smee
+base: core18
+version: '1.1.0'
+summary: Webhook payload delivery service
+description: |
+  Receives payloads then sends them to your locally running application. If
+  your application needs to respond to webhooks, you'll need some way to
+  expose localhost to the internet. smee.io is a small service that uses
+  Server-Sent Events to proxy payloads from the webhook source, then transmit
+  them to your locally running application.
+
+grade: stable
+confinement: strict
+
+apps:
+  smee:
+    command: node_modules/.bin/smee
+    plugs: [network, network-bind]
+
+parts:
+  smee:
+    plugin: nodejs
+    source: .
