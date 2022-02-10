@@ -1,6 +1,6 @@
 name: smee
 base: core18
-version: '1.1.0'
+version: '1.2.2'
 summary: Webhook payload delivery service
 description: |
   Receives payloads then sends them to your locally running application. If
@@ -14,10 +14,11 @@ confinement: strict
 
 apps:
   smee:
-    command: node_modules/.bin/smee
+    command: bin/node $SNAP/node_modules/.bin/smee
     plugs: [network, network-bind]
 
 parts:
   smee:
     plugin: nodejs
+    nodejs-version: '16.14.0'
     source: .
